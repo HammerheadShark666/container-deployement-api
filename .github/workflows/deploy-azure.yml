@@ -8,8 +8,8 @@ on:
   workflow_dispatch:
 
 env:
-  AZURE_CONTAINER_NAME: "prod-ap-container-deployment-api"
-  CONTAINER_APP_NAME: "container-deployement-api"
+  #AZURE_CONTAINER_NAME: "container-deployement-api"
+  CONTAINER_APP_NAME: "prod-ap-container-deployment-api"
   RESOURCE_GROUP: "prod-rg-wolds-hr"
   AZURE_CONTAINER_REGISTRY: "prodcrglobal"
 
