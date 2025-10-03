@@ -11,7 +11,7 @@ env:
   AZURE_CONTAINER_NAME: "prod-ap-container-deployment-api"
   CONTAINER_APP_NAME: "container-deployement-api"
   RESOURCE_GROUP: "prod-rg-wolds-hr"
-  AZURE_CONTAINER_REGISTRY: "prodcrglobal.azurecr.io"
+  AZURE_CONTAINER_REGISTRY: "prodcrglobal"
 
 jobs:
   build-and-deploy:
