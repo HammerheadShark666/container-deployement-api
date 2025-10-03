@@ -1,0 +1,6 @@
+services:
+  container-deployment-api:
+    image: ${DOCKER_REGISTRY-}containerdeploymentapi
+    build:
+      context: .
+      dockerfile: container-deployment-api/Dockerfile
