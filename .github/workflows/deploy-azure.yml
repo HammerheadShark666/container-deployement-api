@@ -36,7 +36,7 @@ jobs:
       uses: docker/buiild-push-action@v6
       with:
         push: true
-        tags: ${{ env.AZURE_CONTAINER_REGISTRY}}.azurecr.io/${{ env.CONTAINER_APP_NAME }:${{ github.sha }}
+        tags: ${{ env.AZURE_CONTAINER_REGISTRY}}.azurecr.io/${{ env.CONTAINER_APP_NAME }}:${{ github.sha }}
         file: Refit.api/Dockerfile 
     - name: Azure Login
       uses: azure/login@v2
