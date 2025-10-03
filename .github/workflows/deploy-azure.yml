@@ -25,13 +25,13 @@ jobs:
           dotnet-version: 8.0.x
 
       - name: Install dependencies
-        run: dotnet restore ./src/ThunderPay.Server/ThunderPay.Server.csproj
+        run: dotnet restore ./src/container-deployment-api/container-deployment-api.Server.csproj
 
       - name: Build
-        run: dotnet build ./src/ThunderPay.Server/ThunderPay.Server.csproj
+        run: dotnet build ./src/container-deployment-api/container-deployment-api.csproj
 
       - name: Publish
-        run: dotnet publish ./src/ThunderPay.Server/ThunderPay.Server.csproj --configuration Release --output ./publish
+        run: dotnet publish ./src/container-deployment-api/container-deployment-api.csproj --configuration Release --output ./publish
 
       - name: Deploy to Azure
         uses: azure/webapps-deploy@v2
