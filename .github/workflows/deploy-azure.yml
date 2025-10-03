@@ -5,14 +5,8 @@ on:
   push:
     branches:
       - main
-  workflow_dispatch:
-
-env:
-  #AZURE_CONTAINER_NAME: "container-deployement-api"
-  CONTAINER_APP_NAME: "prod-ap-container-deployment-api"
-  RESOURCE_GROUP: "prod-rg-wolds-hr"
-  AZURE_CONTAINER_REGISTRY: "prodcrglobal"
-
+  workflow_dispatch: 
+  
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest 
@@ -29,7 +23,7 @@ jobs:
     - name: Log in to ACR
       uses: docker/login-action@v3
       with:
-        registry: ${{ env.AZURE_CONTAINER_REGISTRY }}.azurecr.io
+        registry: ${{ secrets.AZURE_CONTAINER_REGISTRY }}.azurecr.io
         username: ${{ secrets.AZURE_REGISTRY_USERNAME }}
         password: ${{ secrets.AZURE_REGISTRY_PASSWORD }}	
     - name: Build and push container image to ACR
@@ -37,7 +31,7 @@ jobs:
       with:
         context: container-deployment-api
         push: true
-        tags: ${{ env.AZURE_CONTAINER_REGISTRY}}.azurecr.io/${{ env.CONTAINER_APP_NAME }}:${{ github.sha }}
+        tags: ${{ secrets.AZURE_CONTAINER_REGISTRY}}.azurecr.io/${{ secrets.CONTAINER_APP_NAME }}:${{ github.sha }}
         file: container-deployment-api/Dockerfile 
     - name: Azure Login
       uses: azure/login@v2
@@ -46,8 +40,8 @@ jobs:
     - name: Deploy and Azure Container Apps
       uses: azure/container-apps-deploy-action@v1	  
       with:
-        imageToDeploy: ${{ env.AZURE_CONTAINER_REGISTRY }}.azurecr.io/${{ env.CONTAINER_APP_NAME }}:${{ github.sha }}
-        resourceGroup: ${{ env.RESOURCE_GROUP }}
-        containerAppName: ${{ env.CONTAINER_APP_NAME }}
+        imageToDeploy: ${{ secrets.AZURE_CONTAINER_REGISTRY }}.azurecr.io/${{ secrets.CONTAINER_APP_NAME }}:${{ github.sha }}
+        resourceGroup: ${{ secrets.RESOURCE_GROUP }}
+        containerAppName: ${{ secrets.CONTAINER_APP_NAME }}
         environmentVariables: |
           ASPNETCORE_ENVIRONMENT=Development
