@@ -25,7 +25,7 @@ jobs:
           dotnet-version: 8.0.x
 
       - name: Install dependencies
-        run: dotnet restore ./container-deployment-api/container-deployment-api.Server.csproj
+        run: dotnet restore ./container-deployment-api/container-deployment-api.csproj
 
       - name: Build
         run: dotnet build ./container-deployment-api/container-deployment-api.csproj
