@@ -36,6 +36,14 @@ app.MapGet("/weatherforecast", () =>
 .WithName("GetWeatherForecast")
 .WithOpenApi();
 
+app.MapGet("/health", () => "Is Healthy")
+.WithName("health")
+.WithOpenApi();
+
+app.MapGet("/deploy", () => "Was deployed")
+.WithName("deploy")
+.WithOpenApi();
+
 app.Run();
 
 internal record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
